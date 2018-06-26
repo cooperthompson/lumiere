@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <p>Launch code: {{ launch_token }}</p>
+                <p>ISS URL: <a href="{{ iss }}">{{ iss }}</a></p>
+                <p>Authorize URL: <a href="{{ authorize_url }}">{{ authorize_url }}</a></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <a href="{{ authorize_url }}">Continue to OAuth2 Authorization</a>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

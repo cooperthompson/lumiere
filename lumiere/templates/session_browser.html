@@ -1,0 +1,14 @@
+{% block content %}
+    <table>
+        {% for key, value in session.items %}
+            <tr>
+                <td>{{ key }}</td>
+                {% if 'json' in key %}
+                    <td><pre><code>{{ value }}</code></pre></td>
+                {% else %}
+                    <td>{{ value }}</td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Error with the SMART on FHIR launch</title>
+</head>
+<body>
+
+{% if not iss %}
+<p>You are missing your iss query parameter.  It should be provided by the application that is launching the SMART on FHIR App.</p>
+{% endif %}
+
+{% if not launch_token %}
+    <p>You are missing your launch query parameter.  It should be provided by the application that is launching the SMART on FHIR App.</p>
+{% endif %}
+
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+{% block content %}
+    <div id="content-browser" class="row box">
+        <div class="panel panel-default">
+            <div id="content-browser-header" class="col-md-12 panel-heading">
+                <h2 class="panel-title">FHIR Content Browser</h2>
+            </div>
+            <div id="content-browser-body" class="panel-collapse">
+                <div class="panel-body row">
+                    <ul id="fhir-resources" class="nav nav-tabs col-12" role="tablist">
+                        {% for resource in fhir_content %}
+                            <li class="nav-item">
+                                <a href="#{{ resource.name }}"
+                                   id="{{ resource.name }}-tab"
+                                   class="nav-link"
+                                   data-toggle="tab">
+                                    {{ resource.name }}
+                                    <span class="badge pull-right-md collapse-left-md">{{ resource.count }}</span>
+                                </a>
+                            </li>
+                        {% endfor %}
+                        <li class="nav-item">
+                            <a href="#session-info"
+                               id="session-info-tab"
+                               class="nav-link"
+                               data-toggle="tab">Session Info</a>
+                        </li>
+                    </ul>
+                    <div id="fhir-content" class="col-12">
+                        <div id="fhir-tabcontent" class="tab-content">
+                            {% for resource in fhir_content %}
+                                <div class="tab-pane" id="{{ resource.name }}">
+                                    <p>{{ resource.url }}</p>
+                                    <p>{{ resource.response }}</p>
+                                    <pre><code>{{ resource.body }}</code></pre>
+                                </div>
+                            {% endfor %}
+                            <div class="tab-pane" id="session-info">
+                                {% include 'session_browser.html' %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

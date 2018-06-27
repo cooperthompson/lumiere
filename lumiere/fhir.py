@@ -69,7 +69,7 @@ def get_fhir_data(request, url, access_token, resource_name):
         resource_type = response_json.get('resourceType')
     count = 1
 
-    if resource_type == 'Bundle':
+    if resource_type == 'Bundle' and response_json.get('total')>0:
         resource_type = response_json.get('entry')[0].get('resource').get('resourceType')
         count = response_json.get('total')
 

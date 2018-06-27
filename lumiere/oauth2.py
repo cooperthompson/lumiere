@@ -14,7 +14,8 @@ def redeem_launch_token(request, authorize_url, launch_token, client_id, redirec
         'response_type': 'code',
         'launch': launch_token,
         'scope': 'launch',
-        'state': state
+        'state': state,
+        'aud': request.GET.get('iss')
     }
     authorize_request = requests.Request(url=authorize_url, params=query_params).prepare()
 
@@ -29,7 +30,7 @@ def redeem_launch_token(request, authorize_url, launch_token, client_id, redirec
         'url': discrete_url(authorize_request.url),
     })
 
-    if request.GET.get("debug") or True:
+    if request.GET.get("debug"):
         context = {
             'authorize_url': authorize_request.url,
             'iss': request.GET.get('iss'),
@@ -73,5 +74,4 @@ def redeem_auth_code(request, token_url, client_id, redirect_uri, auth_code):
     })
 
     return token_response
-
 

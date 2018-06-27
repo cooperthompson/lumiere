@@ -8,6 +8,7 @@ from django.urls import reverse
 import urllib.parse
 import urllib.request
 import requests
+from django.views.decorators.clickjacking import xframe_options_exempt
 
 from lumiere import oauth2
 from lumiere import fhir
@@ -101,6 +102,7 @@ def home(request):
     return HttpResponseRedirect(reverse('landing'))
 
 
+@xframe_options_exempt
 def landing(request):
     token_url = request.session.get('token_url')
     fhir_base = request.session.get('iss')
